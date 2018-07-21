@@ -2,15 +2,15 @@ package com.pmpavan.sensor;
 
 public class MotionSensor implements Sensor {
 
-    private boolean isSwitchedOn;
+    private boolean isDetected;
 
 
-    public void setSwitchedOn(boolean switchedOn) {
-        isSwitchedOn = switchedOn;
+    public void setDetected(boolean detected) {
+        isDetected = detected;
     }
 
     @Override
-    public boolean isSwitchedOn() {
-        return isSwitchedOn;
+    public boolean isDetected() {
+        return isDetected;
     }
 }
