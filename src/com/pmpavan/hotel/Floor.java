@@ -23,4 +23,12 @@ public class Floor {
     public void setSubCorridors(ArrayList<SubCorridor> subCorridors) {
         this.subCorridors = subCorridors;
     }
+
+    @Override
+    public String toString() {
+        return "Floor{" +
+                "mainCorridors=" + mainCorridors +
+                ", subCorridors=" + subCorridors +
+                '}';
+    }
 }

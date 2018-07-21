@@ -19,4 +19,10 @@ public class TubeLight implements Appliance {
         return isSwitchedOn;
     }
 
+    @Override
+    public String toString() {
+        return "TubeLight{" +
+                "isSwitchedOn=" + isSwitchedOn +
+                '}';
+    }
 }

@@ -5,5 +5,4 @@ public interface Appliance {
     double getPowerConsumed();
 
     boolean isSwitchedOn();
-
 }

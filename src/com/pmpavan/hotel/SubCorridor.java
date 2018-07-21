@@ -1,28 +1,25 @@
 package com.pmpavan.hotel;
 
-import com.pmpavan.electricals.AC;
-import com.pmpavan.electricals.TubeLight;
+import com.pmpavan.electricals.Appliance;
 
 import java.util.ArrayList;
 
 public class SubCorridor {
 
-    private ArrayList<TubeLight> lights = new ArrayList<>();
-    private AC ac;
+    private ArrayList<Appliance> appliances = new ArrayList<>();
 
-    public ArrayList<TubeLight> getLights() {
-        return lights;
+    public ArrayList<Appliance> getAppliances() {
+        return appliances;
     }
 
-    public void setLights(ArrayList<TubeLight> lights) {
-        this.lights = lights;
+    public void setAppliances(ArrayList<Appliance> appliances) {
+        this.appliances = appliances;
     }
 
-    public AC getAc() {
-        return ac;
-    }
-
-    public void setAc(AC ac) {
-        this.ac = ac;
+    @Override
+    public String toString() {
+        return "SubCorridor{" +
+                "appliances=" + appliances +
+                '}';
     }
 }

@@ -19,4 +19,11 @@ public class AC implements Appliance {
         return isSwitchedOn;
     }
 
+
+    @Override
+    public String toString() {
+        return "AC{" +
+                "isSwitchedOn=" + isSwitchedOn +
+                '}';
+    }
 }

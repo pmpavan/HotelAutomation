@@ -1,5 +1,8 @@
 package com.pmpavan;
 
+import com.pmpavan.electricals.AC;
+import com.pmpavan.electricals.Appliance;
+import com.pmpavan.electricals.TubeLight;
 import com.pmpavan.hotel.*;
 
 import java.util.ArrayList;
@@ -9,20 +12,13 @@ public class HotelBuilder {
 
     private Hotel hotel;
 
-    private HotelBuilder() {
+    public HotelBuilder() {
         hotel = new Hotel();
     }
 
-    public HotelBuilder build() {
-        return new HotelBuilder();
-    }
-
-    public HotelBuilder setFloors(ArrayList<Floor> floors) {
-        hotel.setFloors(floors);
-        return this;
-    }
-
-    private HotelBuilder setFloors(int numberOfFloors, int numberOfMainCorridors, int numberOfSubCorridors) {
+    private HotelBuilder setStructure(int numberOfFloors,
+                                      int numberOfMainCorridors, int numberOfACAppliancesInMainCorridor, int numberOfLightAppliancesInMainCorridor,
+                                      int numberOfSubCorridors, int numberOfACAppliancesInSubCorridor, int numberOfLightAppliancesInSubCorridor) {
         ArrayList<Floor> floors = new ArrayList<>();
         for (int i = 0; i < numberOfFloors; i++) {
             Floor floor = new Floor();
@@ -30,10 +26,30 @@ public class HotelBuilder {
             ArrayList<SubCorridor> subCorridors = new ArrayList<>();
             for (int j = 0; j < numberOfMainCorridors; j++) {
                 MainCorridor mainCorridor = new MainCorridor();
+                ArrayList<Appliance> appliances = new ArrayList<>();
+                for (int k = 0; k < numberOfACAppliancesInMainCorridor; k++) {
+                    AC ac = new AC();
+                    appliances.add(ac);
+                }
+                for (int k = 0; k < numberOfLightAppliancesInMainCorridor; k++) {
+                    TubeLight tubeLight = new TubeLight();
+                    appliances.add(tubeLight);
+                }
+                mainCorridor.setAppliances(appliances);
                 mainCorridors.add(mainCorridor);
             }
             for (int k = 0; k < numberOfSubCorridors; k++) {
                 SubCorridor subCorridor = new SubCorridor();
+                ArrayList<Appliance> appliances = new ArrayList<>();
+                for (int l = 0; l < numberOfACAppliancesInSubCorridor; l++) {
+                    AC ac = new AC();
+                    appliances.add(ac);
+                }
+                for (int l = 0; l < numberOfLightAppliancesInSubCorridor; l++) {
+                    TubeLight tubeLight = new TubeLight();
+                    appliances.add(tubeLight);
+                }
+                subCorridor.setAppliances(appliances);
                 subCorridors.add(subCorridor);
             }
             floor.setMainCorridors(mainCorridors);
@@ -44,8 +60,15 @@ public class HotelBuilder {
         return this;
     }
 
-    public void initHotelState(int numberOfFloors, int numberOfMainCorridors, int numberOfSubCorridors) {
-        HotelBuilder hotel = new HotelBuilder();
-        hotel.setFloors(numberOfFloors, numberOfMainCorridors, numberOfSubCorridors);
+    void initHotelState(int numberOfFloors,
+                        int numberOfMainCorridors, int numberOfACAppliancesInMainCorridor, int numberOfLightAppliancesInMainCorridor,
+                        int numberOfSubCorridors, int numberOfACAppliancesInSubCorridor, int numberOfLightAppliancesInSubCorridor) {
+        setStructure(numberOfFloors,
+                numberOfMainCorridors, numberOfACAppliancesInMainCorridor, numberOfLightAppliancesInMainCorridor,
+                numberOfSubCorridors, numberOfACAppliancesInSubCorridor, numberOfLightAppliancesInSubCorridor);
+    }
+
+    String getCurrentHotelState() {
+        return hotel != null ? hotel.toString() : "";
     }
 }

@@ -15,4 +15,11 @@ public class Hotel {
     public void setFloors(ArrayList<Floor> floors) {
         this.floors = floors;
     }
+
+    @Override
+    public String toString() {
+        return "Hotel{" +
+                "floors=" + floors +
+                '}';
+    }
 }
