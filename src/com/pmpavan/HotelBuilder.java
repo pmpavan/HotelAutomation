@@ -1,27 +1,29 @@
 package com.pmpavan;
 
-import com.pmpavan.hotel.Floor;
-import com.pmpavan.hotel.Hotel;
-import com.pmpavan.hotel.MainCorridor;
-import com.pmpavan.hotel.SubCorridor;
+import com.pmpavan.hotel.*;
 
 import java.util.ArrayList;
 
-public class HotelHelper {
-
-    private static HotelHelper hotelInstance;
-    private static Hotel hotel;
+public class HotelBuilder {
 
 
-    public static HotelHelper getInstance() {
-        if (hotelInstance == null)
-            hotelInstance = new HotelHelper();
-        return hotelInstance;
+    private Hotel hotel;
+
+    private HotelBuilder() {
+        hotel = new Hotel();
     }
 
+    public HotelBuilder build() {
+        return new HotelBuilder();
+    }
 
-    public Hotel initHotelState(int numberOfFloors, int numberOfMainCorridors, int numberOfSubCorridors) {
-        Hotel hotel = new Hotel();
+    public HotelBuilder setFloors(ArrayList<Floor> floors) {
+        hotel.setFloors(floors);
+        return this;
+    }
+
+    public void initHotelState(int numberOfFloors, int numberOfMainCorridors, int numberOfSubCorridors) {
+        HotelBuilder hotel = new HotelBuilder();
         ArrayList<Floor> floors = new ArrayList<>();
         for (int i = 0; i < numberOfFloors; i++) {
             Floor floor = new Floor();
@@ -40,7 +42,5 @@ public class HotelHelper {
             floors.add(floor);
         }
         hotel.setFloors(floors);
-        this.hotel = hotel;
-        return hotel;
     }
 }
