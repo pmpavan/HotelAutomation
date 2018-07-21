@@ -22,8 +22,7 @@ public class HotelBuilder {
         return this;
     }
 
-    public void initHotelState(int numberOfFloors, int numberOfMainCorridors, int numberOfSubCorridors) {
-        HotelBuilder hotel = new HotelBuilder();
+    private HotelBuilder setFloors(int numberOfFloors, int numberOfMainCorridors, int numberOfSubCorridors) {
         ArrayList<Floor> floors = new ArrayList<>();
         for (int i = 0; i < numberOfFloors; i++) {
             Floor floor = new Floor();
@@ -42,5 +41,11 @@ public class HotelBuilder {
             floors.add(floor);
         }
         hotel.setFloors(floors);
+        return this;
+    }
+
+    public void initHotelState(int numberOfFloors, int numberOfMainCorridors, int numberOfSubCorridors) {
+        HotelBuilder hotel = new HotelBuilder();
+        hotel.setFloors(numberOfFloors, numberOfMainCorridors, numberOfSubCorridors);
     }
 }
