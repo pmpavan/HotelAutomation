@@ -6,6 +6,8 @@ import com.pmpavan.electricals.TubeLight;
 import com.pmpavan.hotel.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class HotelBuilder {
 
@@ -17,8 +19,8 @@ public class HotelBuilder {
     }
 
     private HotelBuilder setStructure(int numberOfFloors,
-                                      int numberOfMainCorridors, int numberOfACAppliancesInMainCorridor, int numberOfLightAppliancesInMainCorridor,
-                                      int numberOfSubCorridors, int numberOfACAppliancesInSubCorridor, int numberOfLightAppliancesInSubCorridor) {
+                                      int numberOfMainCorridors, HashMap<AppConstants.APPLIANCES, Integer> appliancesInMainCorridor,
+                                      int numberOfSubCorridors, HashMap<AppConstants.APPLIANCES, Integer> appliancesInSubCorridor) {
         ArrayList<Floor> floors = new ArrayList<>();
         for (int i = 0; i < numberOfFloors; i++) {
             Floor floor = new Floor();
@@ -26,29 +28,13 @@ public class HotelBuilder {
             ArrayList<SubCorridor> subCorridors = new ArrayList<>();
             for (int j = 0; j < numberOfMainCorridors; j++) {
                 MainCorridor mainCorridor = new MainCorridor();
-                ArrayList<Appliance> appliances = new ArrayList<>();
-                for (int k = 0; k < numberOfACAppliancesInMainCorridor; k++) {
-                    AC ac = new AC();
-                    appliances.add(ac);
-                }
-                for (int k = 0; k < numberOfLightAppliancesInMainCorridor; k++) {
-                    TubeLight tubeLight = new TubeLight();
-                    appliances.add(tubeLight);
-                }
+                ArrayList<Appliance> appliances = getAppliances(appliancesInMainCorridor);
                 mainCorridor.setAppliances(appliances);
                 mainCorridors.add(mainCorridor);
             }
             for (int k = 0; k < numberOfSubCorridors; k++) {
                 SubCorridor subCorridor = new SubCorridor();
-                ArrayList<Appliance> appliances = new ArrayList<>();
-                for (int l = 0; l < numberOfACAppliancesInSubCorridor; l++) {
-                    AC ac = new AC();
-                    appliances.add(ac);
-                }
-                for (int l = 0; l < numberOfLightAppliancesInSubCorridor; l++) {
-                    TubeLight tubeLight = new TubeLight();
-                    appliances.add(tubeLight);
-                }
+                ArrayList<Appliance> appliances = getAppliances(appliancesInSubCorridor);
                 subCorridor.setAppliances(appliances);
                 subCorridors.add(subCorridor);
             }
@@ -60,12 +46,30 @@ public class HotelBuilder {
         return this;
     }
 
+    private ArrayList<Appliance> getAppliances(HashMap<AppConstants.APPLIANCES, Integer> appliancesInMainCorridor) {
+        ArrayList<Appliance> appliances = new ArrayList<>();
+        for (Map.Entry<AppConstants.APPLIANCES, Integer> entry : appliancesInMainCorridor.entrySet()) {
+            Appliance appliance = null;
+            switch (entry.getKey()) {
+                case AC:
+                    appliance = new AC();
+                    break;
+                case LIGHT:
+                    appliance = new TubeLight();
+                    break;
+            }
+            appliances.add(appliance);
+            System.out.println(entry.getKey() + "/" + entry.getValue());
+        }
+        return appliances;
+    }
+
     void initHotelState(int numberOfFloors,
-                        int numberOfMainCorridors, int numberOfACAppliancesInMainCorridor, int numberOfLightAppliancesInMainCorridor,
-                        int numberOfSubCorridors, int numberOfACAppliancesInSubCorridor, int numberOfLightAppliancesInSubCorridor) {
+                        int numberOfMainCorridors, HashMap<AppConstants.APPLIANCES, Integer> appliancesInMainCorridor,
+                        int numberOfSubCorridors, HashMap<AppConstants.APPLIANCES, Integer> appliancesInSubCorridor) {
         setStructure(numberOfFloors,
-                numberOfMainCorridors, numberOfACAppliancesInMainCorridor, numberOfLightAppliancesInMainCorridor,
-                numberOfSubCorridors, numberOfACAppliancesInSubCorridor, numberOfLightAppliancesInSubCorridor);
+                numberOfMainCorridors, appliancesInMainCorridor,
+                numberOfSubCorridors, appliancesInSubCorridor);
     }
 
     String getCurrentHotelState() {
