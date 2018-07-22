@@ -35,7 +35,7 @@ public class HotelManager implements SensorListener {
 
         String sensorId = AppUtils.getSensorUniqueId(floorNumber, corridorNumber, isMainCorridor);
         Sensor sensor = sensorMap.get(sensorId);
-        System.out.println("sensor " + sensor.toString());
+        System.out.println("sensor " + sensorId);
         sensor.setDetected(true);
     }
 

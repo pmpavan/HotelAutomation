@@ -26,14 +26,8 @@ public class Main {
                 NUMBER_OF_SUBCORRIDORS, subCorridorParams);
         System.out.println(manager.getCurrentHotelState());
 
-        new Timer().schedule(
-                new TimerTask() {
-                    @Override
-                    public void run() {
-                        manager.setSensorData(1, 1, true);
-                    }
-                },
-                5000);
+
+        manager.setSensorData(1, 0, true);
     }
 
 
