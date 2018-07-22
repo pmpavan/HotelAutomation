@@ -1,8 +1,10 @@
 package com.pmpavan.electricals;
 
+import static com.pmpavan.AppConstants.DEFAULT_AC_STATUS;
+
 public class AC implements Appliance {
 
-    private boolean isSwitchedOn;
+    private boolean isSwitchedOn = DEFAULT_AC_STATUS;
 
 
     public void setSwitchedOn(boolean switchedOn) {

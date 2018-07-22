@@ -16,4 +16,6 @@ public class AppConstants {
     public static int NUMBER_OF_LIGHT_IN_MAINCORRIDORS = 1;
     public static int NUMBER_OF_AC_IN_SUBCORRIDORS = 1;
     public static int NUMBER_OF_LIGHT_IN_SUBCORRIDORS = 1;
+
+    public static final boolean DEFAULT_AC_STATUS = true;
 }

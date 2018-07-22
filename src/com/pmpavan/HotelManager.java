@@ -2,11 +2,13 @@ package com.pmpavan;
 
 import com.pmpavan.hotel.builder.HotelBuilder;
 import com.pmpavan.hotel.builder.HotelBuilderImpl;
+import com.pmpavan.sensor.Sensor;
 
 import java.util.HashMap;
 
 public class HotelManager {
     private HotelBuilder hotelBuilderImpl;
+    private HashMap<Integer, Sensor> sensorMap = new HashMap<>();
 
     public HotelManager(int numberOfFloors,
                         int numberOfMainCorridors, HashMap<AppConstants.APPLIANCES, Integer> appliancesInMainCorridor,
@@ -17,7 +19,8 @@ public class HotelManager {
                 numberOfMainCorridors,
                 appliancesInMainCorridor,
                 numberOfSubCorridors,
-                appliancesInSubCorridor);
+                appliancesInSubCorridor
+        ,sensorMap);
     }
 
 

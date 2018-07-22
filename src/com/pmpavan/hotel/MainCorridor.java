@@ -4,7 +4,10 @@ import com.pmpavan.electricals.Appliance;
 
 import java.util.ArrayList;
 
-public class MainCorridor {
+public class MainCorridor implements Corridor {
+
+    private String sensorId;
+    private String corridorId;
 
     private ArrayList<Appliance> appliances = new ArrayList<>();
 
@@ -21,5 +24,28 @@ public class MainCorridor {
         return "MainCorridor{" +
                 "appliances=" + appliances +
                 '}';
+    }
+
+    @Override
+    public String getCorridorId() {
+        return corridorId;
+    }
+
+    @Override
+    public boolean isMainCorridor() {
+        return true;
+    }
+
+    @Override
+    public String getSensorId() {
+        return sensorId;
+    }
+
+    public void setSensorId(String sensorId) {
+        this.sensorId = sensorId;
+    }
+
+    public void setCorridorId(String corridorId) {
+        this.corridorId = corridorId;
     }
 }

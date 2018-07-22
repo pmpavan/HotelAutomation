@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 public class Floor {
 
+    private int floorNumber;
+
     private ArrayList<MainCorridor> mainCorridors = new ArrayList<>();
     private ArrayList<SubCorridor> subCorridors = new ArrayList<>();
 
@@ -24,10 +26,19 @@ public class Floor {
         this.subCorridors = subCorridors;
     }
 
+    public int getFloorNumber() {
+        return floorNumber;
+    }
+
+    public void setFloorNumber(int floorNumber) {
+        this.floorNumber = floorNumber;
+    }
+
     @Override
     public String toString() {
         return "Floor{" +
-                "mainCorridors=" + mainCorridors +
+                "floorNumber=" + floorNumber +
+                ", mainCorridors=" + mainCorridors +
                 ", subCorridors=" + subCorridors +
                 '}';
     }
