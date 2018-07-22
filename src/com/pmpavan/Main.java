@@ -1,8 +1,6 @@
 package com.pmpavan;
 
 import java.util.HashMap;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import static com.pmpavan.AppConstants.*;
 

@@ -1,4 +1,4 @@
-package com.pmpavan.hotel;
+package com.pmpavan.corridor;
 
 public interface Corridor {
 

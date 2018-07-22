@@ -29,13 +29,11 @@ public class HotelManager implements SensorListener {
 
 
     public void setSensorData(int floorNumber, int corridorNumber, boolean isMainCorridor) {
-        for (Map.Entry<String, Sensor> entry : sensorMap.entrySet()) {
-            System.out.println("entry " + entry.getKey() + " " + entry.getValue());
-        }
-
+//        for (Map.Entry<String, Sensor> entry : sensorMap.entrySet()) {
+//            System.out.println("entry " + entry.getKey() + " " + entry.getValue());
+//        }
         String sensorId = AppUtils.getSensorUniqueId(floorNumber, corridorNumber, isMainCorridor);
         Sensor sensor = sensorMap.get(sensorId);
-        System.out.println("sensor " + sensorId);
         sensor.setDetected(true);
     }
 
@@ -45,6 +43,11 @@ public class HotelManager implements SensorListener {
 
     @Override
     public void onSensorDetected(Sensor sensor) {
-        System.out.println("Sensor value changed at " + sensor.getSensorId());
+        System.out.println("Sensor value changed at " + sensor.toString());
+
+    }
+
+    private void onDataChanged(){
+
     }
 }

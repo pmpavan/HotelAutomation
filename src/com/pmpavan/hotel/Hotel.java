@@ -1,5 +1,7 @@
 package com.pmpavan.hotel;
 
+import com.pmpavan.floor.Floor;
+
 import java.util.ArrayList;
 
 public class Hotel {

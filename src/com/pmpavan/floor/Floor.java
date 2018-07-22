@@ -1,4 +1,7 @@
-package com.pmpavan.hotel;
+package com.pmpavan.floor;
+
+import com.pmpavan.corridor.MainCorridor;
+import com.pmpavan.corridor.SubCorridor;
 
 import java.util.ArrayList;
 
