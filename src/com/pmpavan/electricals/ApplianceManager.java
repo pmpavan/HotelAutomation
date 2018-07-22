@@ -2,7 +2,7 @@ package com.pmpavan.electricals;
 
 public interface ApplianceManager {
 
-    void switchOnAppliance(Appliance appliance);
+    boolean switchOnAppliance(Appliance appliance);
 
-    void switchOffAppliance(Appliance appliance);
+    boolean switchOffAppliance(Appliance appliance);
 }

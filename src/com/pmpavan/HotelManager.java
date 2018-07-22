@@ -89,7 +89,10 @@ public class HotelManager implements SensorListener {
         }
         if (applianceManager != null)
             if (isSwitchedOn) {
-                applianceManager.switchOnAppliance(appliance);
+                isSwitchedOn = applianceManager.switchOnAppliance(appliance);
+                if (isSwitchedOn) {
+                    //TODO start TIMER for a minute
+                }
             } else {
                 applianceManager.switchOffAppliance(appliance);
             }

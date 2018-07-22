@@ -1,5 +1,7 @@
 package com.pmpavan;
 
+import java.time.LocalTime;
+
 public class AppConstants {
 
     public enum APPLIANCES {
@@ -18,4 +20,7 @@ public class AppConstants {
     public static int NUMBER_OF_LIGHT_IN_SUBCORRIDORS = 1;
 
     public static final boolean DEFAULT_AC_STATUS = true;
+
+    public static final LocalTime beforeTime = LocalTime.of(6, 0);
+    public static final LocalTime afterTime = LocalTime.of(18, 0);
 }

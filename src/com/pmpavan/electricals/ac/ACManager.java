@@ -5,12 +5,16 @@ import com.pmpavan.electricals.ApplianceManager;
 
 public class ACManager implements ApplianceManager {
     @Override
-    public void switchOnAppliance(Appliance appliance) {
-        appliance.setSwitchedOn(true);
+    public boolean switchOnAppliance(Appliance appliance) {
+        boolean isSwitchedOn = true;
+        appliance.setSwitchedOn(isSwitchedOn);
+        return isSwitchedOn;
     }
 
     @Override
-    public void switchOffAppliance(Appliance appliance) {
-        appliance.setSwitchedOn(false);
+    public boolean switchOffAppliance(Appliance appliance) {
+        boolean isSwitchedOn = false;
+        appliance.setSwitchedOn(isSwitchedOn);
+        return isSwitchedOn;
     }
 }

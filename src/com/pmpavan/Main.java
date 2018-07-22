@@ -7,7 +7,7 @@ import static com.pmpavan.AppConstants.*;
 public class Main {
 
     private static int NUMBER_OF_FLOORS = 2;
-    private static int NUMBER_OF_MAINCORRIDORS = 2;
+    private static int NUMBER_OF_MAINCORRIDORS = 1;
     private static int NUMBER_OF_SUBCORRIDORS = 2;
 
     public static void main(String[] args) {
