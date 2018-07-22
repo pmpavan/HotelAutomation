@@ -2,9 +2,9 @@ package com.pmpavan.hotel;
 
 public interface Corridor {
 
-    String getCorridorId();
+    int getCorridorId();
 
-    void setCorridorId(String corridorId);
+    void setCorridorId(int corridorId);
 
     boolean isMainCorridor();
 

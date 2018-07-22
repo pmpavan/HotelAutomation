@@ -1,6 +1,8 @@
 package com.pmpavan;
 
 import java.util.HashMap;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import static com.pmpavan.AppConstants.*;
 
@@ -19,10 +21,19 @@ public class Main {
         subCorridorParams.put(AppConstants.APPLIANCES.AC, NUMBER_OF_AC_IN_SUBCORRIDORS);
         subCorridorParams.put(AppConstants.APPLIANCES.LIGHT, NUMBER_OF_LIGHT_IN_SUBCORRIDORS);
 
-        HotelManager hotelBuilder = new HotelManager(NUMBER_OF_FLOORS,
+        HotelManager manager = new HotelManager(NUMBER_OF_FLOORS,
                 NUMBER_OF_MAINCORRIDORS, mainCorridorParams,
                 NUMBER_OF_SUBCORRIDORS, subCorridorParams);
-        System.out.println(hotelBuilder.getCurrentHotelState());
+        System.out.println(manager.getCurrentHotelState());
+
+        new Timer().schedule(
+                new TimerTask() {
+                    @Override
+                    public void run() {
+                        manager.setSensorData(1, 1, true);
+                    }
+                },
+                2000);
     }
 
 

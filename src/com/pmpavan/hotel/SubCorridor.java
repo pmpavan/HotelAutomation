@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class SubCorridor implements Corridor {
 
     private String sensorId;
-    private String corridorId;
+    private int corridorId;
 
     private ArrayList<Appliance> appliances = new ArrayList<>();
 
@@ -27,7 +27,7 @@ public class SubCorridor implements Corridor {
     }
 
     @Override
-    public String getCorridorId() {
+    public int getCorridorId() {
         return corridorId;
     }
 
@@ -47,7 +47,7 @@ public class SubCorridor implements Corridor {
     }
 
     @Override
-    public void setCorridorId(String corridorId) {
+    public void setCorridorId(int corridorId) {
         this.corridorId = corridorId;
     }
 }
