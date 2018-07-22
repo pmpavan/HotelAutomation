@@ -4,7 +4,9 @@ import com.pmpavan.corridor.main.MainCorridor;
 import com.pmpavan.corridor.sub.SubCorridor;
 import com.pmpavan.electricals.Appliance;
 import com.pmpavan.electricals.ApplianceManager;
+import com.pmpavan.electricals.ac.AC;
 import com.pmpavan.electricals.ac.ACManager;
+import com.pmpavan.electricals.tubelight.TubeLight;
 import com.pmpavan.electricals.tubelight.TubeLightManager;
 import com.pmpavan.hotel.builder.HotelBuilder;
 import com.pmpavan.hotel.builder.HotelBuilderImpl;
@@ -24,13 +26,25 @@ public class HotelManager implements SensorListener {
                         int numberOfMainCorridors, HashMap<AppConstants.APPLIANCES, Integer> appliancesInMainCorridor,
                         int numberOfSubCorridors, HashMap<AppConstants.APPLIANCES, Integer> appliancesInSubCorridor) {
         hotel = new HotelBuilderImpl();
-        hotel.initHotelState(
+        initHotel(hotel,
                 numberOfFloors,
                 numberOfMainCorridors,
                 appliancesInMainCorridor,
                 numberOfSubCorridors,
                 appliancesInSubCorridor,
-                sensorMap, this);
+                this);
+    }
+
+    public void initHotel(HotelBuilder hotel, int numberOfFloors,
+                          int numberOfMainCorridors, HashMap<AppConstants.APPLIANCES, Integer> appliancesInMainCorridor,
+                          int numberOfSubCorridors, HashMap<AppConstants.APPLIANCES, Integer> appliancesInSubCorridor,
+                          SensorListener listener) {
+        hotel.initHotelState(numberOfFloors,
+                numberOfMainCorridors,
+                appliancesInMainCorridor,
+                numberOfSubCorridors,
+                appliancesInSubCorridor,
+                sensorMap, listener);
     }
 
 
