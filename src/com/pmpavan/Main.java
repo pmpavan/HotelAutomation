@@ -33,7 +33,7 @@ public class Main {
                         manager.setSensorData(1, 1, true);
                     }
                 },
-                2000);
+                5000);
     }
 
 
