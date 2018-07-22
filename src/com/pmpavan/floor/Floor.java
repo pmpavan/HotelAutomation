@@ -1,7 +1,7 @@
 package com.pmpavan.floor;
 
-import com.pmpavan.corridor.MainCorridor;
-import com.pmpavan.corridor.SubCorridor;
+import com.pmpavan.corridor.main.MainCorridor;
+import com.pmpavan.corridor.sub.SubCorridor;
 
 import java.util.ArrayList;
 

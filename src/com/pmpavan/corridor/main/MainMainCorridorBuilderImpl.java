@@ -1,9 +1,9 @@
-package com.pmpavan.corridor;
+package com.pmpavan.corridor.main;
 
 import com.pmpavan.AppConstants;
 import com.pmpavan.AppUtils;
+import com.pmpavan.corridor.CorridorHelper;
 import com.pmpavan.electricals.Appliance;
-import com.pmpavan.sensor.MotionSensor;
 import com.pmpavan.sensor.Sensor;
 import com.pmpavan.sensor.SensorListener;
 

@@ -1,23 +1,17 @@
 package com.pmpavan.hotel.builder;
 
 import com.pmpavan.AppConstants;
-import com.pmpavan.AppUtils;
-import com.pmpavan.corridor.MainCorridor;
-import com.pmpavan.corridor.SubCorridor;
-import com.pmpavan.electricals.AC;
-import com.pmpavan.electricals.Appliance;
-import com.pmpavan.electricals.TubeLight;
+import com.pmpavan.corridor.main.MainCorridor;
+import com.pmpavan.corridor.sub.SubCorridor;
 import com.pmpavan.floor.Floor;
 import com.pmpavan.floor.FloorBuilderImpl;
+import com.pmpavan.floor.FloorManager;
 import com.pmpavan.hotel.*;
-import com.pmpavan.sensor.MotionSensor;
 import com.pmpavan.sensor.Sensor;
 import com.pmpavan.sensor.SensorListener;
-import javafx.util.Pair;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 
 public class HotelBuilderImpl implements HotelBuilder {
 
@@ -58,6 +52,32 @@ public class HotelBuilderImpl implements HotelBuilder {
                 numberOfMainCorridors, appliancesInMainCorridor,
                 numberOfSubCorridors, appliancesInSubCorridor,
                 sensorMap, listener);
+    }
+
+    @Override
+    public Floor getFloorAtPosition(int position) {
+        return hotel.getFloors().get(position);
+    }
+
+    @Override
+    public MainCorridor getMainCorridor(int floorNumber, int mainCorridorNumber) {
+        FloorManager floorManager = new FloorManager();
+        Floor floor = getFloorAtPosition(floorNumber);
+        return floorManager.getMainCorridor(floor, mainCorridorNumber);
+    }
+
+    @Override
+    public SubCorridor getSubCorridor(int floorNumber, int subCorridorNumber) {
+        FloorManager floorManager = new FloorManager();
+        Floor floor = getFloorAtPosition(floorNumber);
+        return floorManager.getSubCorridor(floor, subCorridorNumber);
+    }
+
+    @Override
+    public ArrayList<SubCorridor> getSubCorridors(int floorNumber) {
+        FloorManager floorManager = new FloorManager();
+        Floor floor = getFloorAtPosition(floorNumber);
+        return floorManager.getSubCorridors(floor);
     }
 
     @Override

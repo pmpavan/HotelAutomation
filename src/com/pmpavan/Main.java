@@ -26,6 +26,7 @@ public class Main {
 
 
         manager.setSensorData(1, 0, true);
+        System.out.println("updated " + manager.getCurrentHotelState());
     }
 
 

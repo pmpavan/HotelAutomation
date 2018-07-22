@@ -1,7 +1,12 @@
 package com.pmpavan.floor;
 
 import com.pmpavan.AppConstants;
-import com.pmpavan.corridor.*;
+import com.pmpavan.corridor.main.MainCorridor;
+import com.pmpavan.corridor.main.MainCorridorBuilder;
+import com.pmpavan.corridor.main.MainMainCorridorBuilderImpl;
+import com.pmpavan.corridor.sub.SubCorridor;
+import com.pmpavan.corridor.sub.SubCorridorBuilder;
+import com.pmpavan.corridor.sub.SubCorridorBuilderImpl;
 import com.pmpavan.sensor.Sensor;
 import com.pmpavan.sensor.SensorListener;
 import javafx.util.Pair;

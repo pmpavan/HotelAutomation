@@ -1,10 +1,12 @@
 package com.pmpavan.electricals;
 
+import com.pmpavan.AppConstants;
+
 public class TubeLight implements Appliance {
 
     private boolean isSwitchedOn;
 
-
+    @Override
     public void setSwitchedOn(boolean switchedOn) {
         isSwitchedOn = switchedOn;
     }
@@ -12,6 +14,11 @@ public class TubeLight implements Appliance {
     @Override
     public String getName() {
         return TubeLight.class.getName();
+    }
+
+    @Override
+    public AppConstants.APPLIANCES getType() {
+        return AppConstants.APPLIANCES.LIGHT;
     }
 
     @Override

@@ -1,10 +1,11 @@
-package com.pmpavan.corridor;
+package com.pmpavan.corridor.main;
 
+import com.pmpavan.corridor.Corridor;
 import com.pmpavan.electricals.Appliance;
 
 import java.util.ArrayList;
 
-public class SubCorridor implements Corridor {
+public class MainCorridor implements Corridor {
 
     private String sensorId;
     private int corridorId;
@@ -21,7 +22,7 @@ public class SubCorridor implements Corridor {
 
     @Override
     public String toString() {
-        return "SubCorridor{" +
+        return "MainCorridor{" +
                 "appliances=" + appliances +
                 '}';
     }
@@ -33,7 +34,7 @@ public class SubCorridor implements Corridor {
 
     @Override
     public boolean isMainCorridor() {
-        return false;
+        return true;
     }
 
     @Override

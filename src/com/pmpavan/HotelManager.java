@@ -1,12 +1,15 @@
 package com.pmpavan;
 
+import com.pmpavan.corridor.main.MainCorridor;
+import com.pmpavan.corridor.sub.SubCorridor;
+import com.pmpavan.electricals.Appliance;
 import com.pmpavan.hotel.builder.HotelBuilder;
 import com.pmpavan.hotel.builder.HotelBuilderImpl;
 import com.pmpavan.sensor.Sensor;
 import com.pmpavan.sensor.SensorListener;
 
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 
 public class HotelManager implements SensorListener {
 
@@ -29,9 +32,6 @@ public class HotelManager implements SensorListener {
 
 
     public void setSensorData(int floorNumber, int corridorNumber, boolean isMainCorridor) {
-//        for (Map.Entry<String, Sensor> entry : sensorMap.entrySet()) {
-//            System.out.println("entry " + entry.getKey() + " " + entry.getValue());
-//        }
         String sensorId = AppUtils.getSensorUniqueId(floorNumber, corridorNumber, isMainCorridor);
         Sensor sensor = sensorMap.get(sensorId);
         sensor.setDetected(true);
@@ -44,10 +44,54 @@ public class HotelManager implements SensorListener {
     @Override
     public void onSensorDetected(Sensor sensor) {
         System.out.println("Sensor value changed at " + sensor.toString());
+        if (sensor.isMainCorridor()) {
 
+            //switch on the main corridor AC and Lights
+            MainCorridor mainCorridor = hotel.getMainCorridor(sensor.getFloorNumber(), sensor.getCorridorNumber());
+            ArrayList<Appliance> appliances = mainCorridor.getAppliances();
+            for (Appliance appliance : appliances) {
+                switch (appliance.getType()) {
+                    case AC:
+                        appliance.setSwitchedOn(true);
+                        break;
+                    case LIGHT:
+                        appliance.setSwitchedOn(true);
+                        break;
+                }
+            }
+        } else {
+            //switch on current sub corridor lights and AC but off other sub corridors lights and AC
+            ArrayList<SubCorridor> subCorridors = hotel.getSubCorridors(sensor.getFloorNumber());
+            for (SubCorridor subCorridor : subCorridors) {
+                if (subCorridor.getCorridorId() == sensor.getCorridorNumber()) {
+                    ArrayList<Appliance> appliances = subCorridor.getAppliances();
+                    for (Appliance appliance : appliances) {
+                        switch (appliance.getType()) {
+                            case AC:
+                                appliance.setSwitchedOn(true);
+                                break;
+                            case LIGHT:
+                                appliance.setSwitchedOn(true);
+                                break;
+                        }
+                    }
+                } else {
+                    ArrayList<Appliance> appliances = subCorridor.getAppliances();
+                    for (Appliance appliance : appliances) {
+                        switch (appliance.getType()) {
+                            case AC:
+                                appliance.setSwitchedOn(false);
+                                break;
+                            case LIGHT:
+                                appliance.setSwitchedOn(false);
+                                break;
+                        }
+                    }
+                }
+            }
+
+        }
     }
 
-    private void onDataChanged(){
 
-    }
 }

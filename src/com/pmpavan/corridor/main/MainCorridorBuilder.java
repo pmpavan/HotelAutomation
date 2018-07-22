@@ -1,4 +1,4 @@
-package com.pmpavan.corridor;
+package com.pmpavan.corridor.main;
 
 import com.pmpavan.AppConstants;
 import com.pmpavan.sensor.Sensor;
