@@ -10,6 +10,11 @@ public class TubeLight implements Appliance {
     }
 
     @Override
+    public String getName() {
+        return TubeLight.class.getName();
+    }
+
+    @Override
     public double getPowerConsumed() {
         return 5;
     }

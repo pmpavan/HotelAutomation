@@ -10,6 +10,11 @@ public class AC implements Appliance {
     }
 
     @Override
+    public String getName() {
+        return AC.class.getName();
+    }
+
+    @Override
     public double getPowerConsumed() {
         return 10;
     }
