@@ -3,6 +3,9 @@ package com.pmpavan;
 import com.pmpavan.corridor.main.MainCorridor;
 import com.pmpavan.corridor.sub.SubCorridor;
 import com.pmpavan.electricals.Appliance;
+import com.pmpavan.electricals.ApplianceManager;
+import com.pmpavan.electricals.ac.ACManager;
+import com.pmpavan.electricals.tubelight.TubeLightManager;
 import com.pmpavan.hotel.builder.HotelBuilder;
 import com.pmpavan.hotel.builder.HotelBuilderImpl;
 import com.pmpavan.sensor.Sensor;
@@ -50,14 +53,7 @@ public class HotelManager implements SensorListener {
             MainCorridor mainCorridor = hotel.getMainCorridor(sensor.getFloorNumber(), sensor.getCorridorNumber());
             ArrayList<Appliance> appliances = mainCorridor.getAppliances();
             for (Appliance appliance : appliances) {
-                switch (appliance.getType()) {
-                    case AC:
-                        appliance.setSwitchedOn(true);
-                        break;
-                    case LIGHT:
-                        appliance.setSwitchedOn(true);
-                        break;
-                }
+                handleAppliance(appliance, true);
             }
         } else {
             //switch on current sub corridor lights and AC but off other sub corridors lights and AC
@@ -66,26 +62,14 @@ public class HotelManager implements SensorListener {
                 if (subCorridor.getCorridorId() == sensor.getCorridorNumber()) {
                     ArrayList<Appliance> appliances = subCorridor.getAppliances();
                     for (Appliance appliance : appliances) {
-                        switch (appliance.getType()) {
-                            case AC:
-                                appliance.setSwitchedOn(true);
-                                break;
-                            case LIGHT:
-                                appliance.setSwitchedOn(true);
-                                break;
-                        }
+                        handleAppliance(appliance, true);
+
                     }
                 } else {
                     ArrayList<Appliance> appliances = subCorridor.getAppliances();
                     for (Appliance appliance : appliances) {
-                        switch (appliance.getType()) {
-                            case AC:
-                                appliance.setSwitchedOn(false);
-                                break;
-                            case LIGHT:
-                                appliance.setSwitchedOn(false);
-                                break;
-                        }
+                        handleAppliance(appliance, false);
+
                     }
                 }
             }
@@ -93,5 +77,22 @@ public class HotelManager implements SensorListener {
         }
     }
 
+    private void handleAppliance(Appliance appliance, boolean isSwitchedOn) {
+        ApplianceManager applianceManager = null;
+        switch (appliance.getType()) {
+            case AC:
+                applianceManager = new ACManager();
+                break;
+            case LIGHT:
+                applianceManager = new TubeLightManager();
+                break;
+        }
+        if (applianceManager != null)
+            if (isSwitchedOn) {
+                applianceManager.switchOnAppliance(appliance);
+            } else {
+                applianceManager.switchOffAppliance(appliance);
+            }
+    }
 
 }

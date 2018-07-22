@@ -4,6 +4,7 @@ import com.pmpavan.AppConstants;
 import com.pmpavan.corridor.main.MainCorridor;
 import com.pmpavan.corridor.sub.SubCorridor;
 import com.pmpavan.floor.Floor;
+import com.pmpavan.floor.FloorBuilder;
 import com.pmpavan.floor.FloorBuilderImpl;
 import com.pmpavan.floor.FloorManager;
 import com.pmpavan.hotel.*;
@@ -38,7 +39,7 @@ public class HotelBuilderImpl implements HotelBuilder {
     private Floor createFloor(int floorNumber, int numberOfMainCorridors, HashMap<AppConstants.APPLIANCES, Integer> appliancesInMainCorridor,
                               int numberOfSubCorridors, HashMap<AppConstants.APPLIANCES, Integer> appliancesInSubCorridor,
                               HashMap<String, Sensor> sensorMap, SensorListener listener) {
-        FloorBuilderImpl floor = new FloorBuilderImpl();
+        FloorBuilder floor = new FloorBuilderImpl();
         return floor.createFloor(floorNumber, numberOfMainCorridors, appliancesInMainCorridor, numberOfSubCorridors, appliancesInSubCorridor, sensorMap, listener);
     }
 

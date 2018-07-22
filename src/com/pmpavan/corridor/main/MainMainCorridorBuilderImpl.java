@@ -24,7 +24,7 @@ public class MainMainCorridorBuilderImpl implements MainCorridorBuilder {
                                        HashMap<String, Sensor> sensorMap, SensorListener listener) {
 
         CorridorHelper helper = new CorridorHelper();
-        ArrayList<Appliance> appliances = helper.getAppliances(appliancesInMainCorridor);
+        ArrayList<Appliance> appliances = helper.getAppliances(appliancesInMainCorridor,true);
         mainCorridor.setCorridorId(mainCorridorNumber);
 
         mainCorridor.setAppliances(appliances);

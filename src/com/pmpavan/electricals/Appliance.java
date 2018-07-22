@@ -13,4 +13,8 @@ public interface Appliance {
     double getPowerConsumed();
 
     boolean isSwitchedOn();
+
+    boolean isInMainCorridor();
+
+    void setInMainCorridor(boolean inMainCorridor);
 }

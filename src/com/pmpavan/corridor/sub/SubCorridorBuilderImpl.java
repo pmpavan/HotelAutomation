@@ -3,8 +3,6 @@ package com.pmpavan.corridor.sub;
 import com.pmpavan.AppConstants;
 import com.pmpavan.AppUtils;
 import com.pmpavan.corridor.CorridorHelper;
-import com.pmpavan.corridor.sub.SubCorridor;
-import com.pmpavan.corridor.sub.SubCorridorBuilder;
 import com.pmpavan.electricals.Appliance;
 import com.pmpavan.sensor.Sensor;
 import com.pmpavan.sensor.SensorListener;
@@ -30,7 +28,7 @@ public class SubCorridorBuilderImpl implements SubCorridorBuilder {
         subCorridor.setCorridorId(subCorridorNumber);
 
 
-        ArrayList<Appliance> appliances = helper.getAppliances(appliancesInSubCorridor);
+        ArrayList<Appliance> appliances = helper.getAppliances(appliancesInSubCorridor, false);
         subCorridor.setAppliances(appliances);
 
         String sensorId = AppUtils.putInSensorMap(floorNumber, subCorridorNumber, false, sensorMap, listener);

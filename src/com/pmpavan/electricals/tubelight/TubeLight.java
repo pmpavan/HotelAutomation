@@ -1,10 +1,12 @@
-package com.pmpavan.electricals;
+package com.pmpavan.electricals.tubelight;
 
 import com.pmpavan.AppConstants;
+import com.pmpavan.electricals.Appliance;
 
 public class TubeLight implements Appliance {
 
     private boolean isSwitchedOn;
+    private boolean isInMainCorridor;
 
     @Override
     public void setSwitchedOn(boolean switchedOn) {
@@ -36,5 +38,15 @@ public class TubeLight implements Appliance {
         return "TubeLight{" +
                 "isSwitchedOn=" + isSwitchedOn +
                 '}';
+    }
+
+    @Override
+    public boolean isInMainCorridor() {
+        return isInMainCorridor;
+    }
+
+    @Override
+    public void setInMainCorridor(boolean inMainCorridor) {
+        isInMainCorridor = inMainCorridor;
     }
 }
