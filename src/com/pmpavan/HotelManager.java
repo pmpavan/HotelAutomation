@@ -1,17 +1,18 @@
 package com.pmpavan;
 
-import com.pmpavan.hotel.HotelBuilder;
+import com.pmpavan.hotel.builder.HotelBuilder;
+import com.pmpavan.hotel.builder.HotelBuilderImpl;
 
 import java.util.HashMap;
 
 public class HotelManager {
-    private HotelBuilder hotelBuilder;
+    private HotelBuilder hotelBuilderImpl;
 
     public HotelManager(int numberOfFloors,
                         int numberOfMainCorridors, HashMap<AppConstants.APPLIANCES, Integer> appliancesInMainCorridor,
                         int numberOfSubCorridors, HashMap<AppConstants.APPLIANCES, Integer> appliancesInSubCorridor) {
-        hotelBuilder = new HotelBuilder();
-        hotelBuilder.initHotelState(
+        hotelBuilderImpl = new HotelBuilderImpl();
+        hotelBuilderImpl.initHotelState(
                 numberOfFloors,
                 numberOfMainCorridors,
                 appliancesInMainCorridor,
@@ -21,6 +22,6 @@ public class HotelManager {
 
 
     String getCurrentHotelState() {
-        return hotelBuilder != null ? hotelBuilder.toString() : "";
+        return hotelBuilderImpl != null ? hotelBuilderImpl.toString() : "";
     }
 }

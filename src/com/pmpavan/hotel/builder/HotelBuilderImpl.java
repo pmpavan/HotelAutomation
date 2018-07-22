@@ -1,27 +1,31 @@
-package com.pmpavan.hotel;
+package com.pmpavan.hotel.builder;
 
 import com.pmpavan.AppConstants;
 import com.pmpavan.electricals.AC;
 import com.pmpavan.electricals.Appliance;
 import com.pmpavan.electricals.TubeLight;
+import com.pmpavan.hotel.Floor;
+import com.pmpavan.hotel.Hotel;
+import com.pmpavan.hotel.MainCorridor;
+import com.pmpavan.hotel.SubCorridor;
 import javafx.util.Pair;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class HotelBuilder {
+public class HotelBuilderImpl implements HotelBuilder {
 
 
     private Hotel hotel;
 
-    public HotelBuilder() {
+    public HotelBuilderImpl() {
         hotel = new Hotel();
     }
 
-    private HotelBuilder setStructure(int numberOfFloors,
-                                      int numberOfMainCorridors, HashMap<AppConstants.APPLIANCES, Integer> appliancesInMainCorridor,
-                                      int numberOfSubCorridors, HashMap<AppConstants.APPLIANCES, Integer> appliancesInSubCorridor) {
+    private HotelBuilderImpl setStructure(int numberOfFloors,
+                                          int numberOfMainCorridors, HashMap<AppConstants.APPLIANCES, Integer> appliancesInMainCorridor,
+                                          int numberOfSubCorridors, HashMap<AppConstants.APPLIANCES, Integer> appliancesInSubCorridor) {
         ArrayList<Floor> floors = new ArrayList<>();
         for (int i = 0; i < numberOfFloors; i++) {
             Floor floor = createFloor(numberOfMainCorridors, appliancesInMainCorridor, numberOfSubCorridors, appliancesInSubCorridor);
@@ -90,9 +94,10 @@ public class HotelBuilder {
         return appliances;
     }
 
+    @Override
     public void initHotelState(int numberOfFloors,
-                        int numberOfMainCorridors, HashMap<AppConstants.APPLIANCES, Integer> appliancesInMainCorridor,
-                        int numberOfSubCorridors, HashMap<AppConstants.APPLIANCES, Integer> appliancesInSubCorridor) {
+                               int numberOfMainCorridors, HashMap<AppConstants.APPLIANCES, Integer> appliancesInMainCorridor,
+                               int numberOfSubCorridors, HashMap<AppConstants.APPLIANCES, Integer> appliancesInSubCorridor) {
         setStructure(numberOfFloors,
                 numberOfMainCorridors, appliancesInMainCorridor,
                 numberOfSubCorridors, appliancesInSubCorridor);
