@@ -5,10 +5,8 @@ import com.pmpavan.AppUtils;
 import com.pmpavan.electricals.AC;
 import com.pmpavan.electricals.Appliance;
 import com.pmpavan.electricals.TubeLight;
-import com.pmpavan.hotel.Floor;
-import com.pmpavan.hotel.Hotel;
-import com.pmpavan.hotel.MainCorridor;
-import com.pmpavan.hotel.SubCorridor;
+import com.pmpavan.hotel.*;
+import com.pmpavan.sensor.MotionSensor;
 import com.pmpavan.sensor.Sensor;
 import javafx.util.Pair;
 
@@ -28,10 +26,10 @@ public class HotelBuilderImpl implements HotelBuilder {
     private HotelBuilderImpl setStructure(int numberOfFloors,
                                           int numberOfMainCorridors, HashMap<AppConstants.APPLIANCES, Integer> appliancesInMainCorridor,
                                           int numberOfSubCorridors, HashMap<AppConstants.APPLIANCES, Integer> appliancesInSubCorridor,
-                                          HashMap<Integer, Sensor> sensorMap) {
+                                          HashMap<String, Sensor> sensorMap) {
         ArrayList<Floor> floors = new ArrayList<>();
-        for (int i = 0; i < numberOfFloors; i++) {
-            Floor floor = createFloor(i, numberOfMainCorridors, appliancesInMainCorridor, numberOfSubCorridors, appliancesInSubCorridor, sensorMap);
+        for (int floorNumber = 0; floorNumber < numberOfFloors; floorNumber++) {
+            Floor floor = createFloor(floorNumber, numberOfMainCorridors, appliancesInMainCorridor, numberOfSubCorridors, appliancesInSubCorridor, sensorMap);
             floors.add(floor);
         }
         hotel.setFloors(floors);
@@ -40,10 +38,10 @@ public class HotelBuilderImpl implements HotelBuilder {
 
     private Floor createFloor(int floorNumber, int numberOfMainCorridors, HashMap<AppConstants.APPLIANCES, Integer> appliancesInMainCorridor,
                               int numberOfSubCorridors, HashMap<AppConstants.APPLIANCES, Integer> appliancesInSubCorridor,
-                              HashMap<Integer, Sensor> sensorMap) {
+                              HashMap<String, Sensor> sensorMap) {
         Floor floor = new Floor();
         floor.setFloorNumber(floorNumber);
-        Pair<ArrayList<MainCorridor>, ArrayList<SubCorridor>> pair = createCorridors(numberOfMainCorridors, appliancesInMainCorridor, numberOfSubCorridors, appliancesInSubCorridor, sensorMap);
+        Pair<ArrayList<MainCorridor>, ArrayList<SubCorridor>> pair = createCorridors(floorNumber, numberOfMainCorridors, appliancesInMainCorridor, numberOfSubCorridors, appliancesInSubCorridor, sensorMap);
         ArrayList<MainCorridor> mainCorridors = pair.getKey();
         ArrayList<SubCorridor> subCorridors = pair.getValue();
         floor.setMainCorridors(mainCorridors);
@@ -51,37 +49,51 @@ public class HotelBuilderImpl implements HotelBuilder {
         return floor;
     }
 
-    private Pair<ArrayList<MainCorridor>, ArrayList<SubCorridor>> createCorridors(int numberOfMainCorridors,
-                                                                                  HashMap<AppConstants.APPLIANCES, Integer> appliancesInMainCorridor,
-                                                                                  int numberOfSubCorridors,
-                                                                                  HashMap<AppConstants.APPLIANCES, Integer> appliancesInSubCorridor,
-                                                                                  HashMap<Integer, Sensor> sensorMap) {
+    private Pair<ArrayList<MainCorridor>, ArrayList<SubCorridor>> createCorridors(
+            int floorNumber, int numberOfMainCorridors,
+            HashMap<AppConstants.APPLIANCES, Integer> appliancesInMainCorridor,
+            int numberOfSubCorridors,
+            HashMap<AppConstants.APPLIANCES, Integer> appliancesInSubCorridor,
+            HashMap<String, Sensor> sensorMap) {
+
         ArrayList<MainCorridor> mainCorridors = new ArrayList<>();
         ArrayList<SubCorridor> subCorridors = new ArrayList<>();
-        for (int j = 0; j < numberOfMainCorridors; j++) {
-            MainCorridor mainCorridor = createMainCorridor(appliancesInMainCorridor, sensorMap);
+        for (int mainCorridorId = 0; mainCorridorId < numberOfMainCorridors; mainCorridorId++) {
+            MainCorridor mainCorridor = createMainCorridor(floorNumber, mainCorridorId, appliancesInMainCorridor, sensorMap);
             mainCorridors.add(mainCorridor);
         }
-        for (int k = 0; k < numberOfSubCorridors; k++) {
-            SubCorridor subCorridor = createSubCorridor(appliancesInSubCorridor, sensorMap);
+        for (int subCorridorId = 0; subCorridorId < numberOfSubCorridors; subCorridorId++) {
+            SubCorridor subCorridor = createSubCorridor(floorNumber, subCorridorId, appliancesInSubCorridor, sensorMap);
             subCorridors.add(subCorridor);
         }
         return new Pair<>(mainCorridors, subCorridors);
     }
 
-    private MainCorridor createMainCorridor(HashMap<AppConstants.APPLIANCES, Integer> appliancesInMainCorridor, HashMap<Integer, Sensor> sensorMap) {
+    private MainCorridor createMainCorridor(int floorNumber, int mainCorridorNumber, HashMap<AppConstants.APPLIANCES, Integer> appliancesInMainCorridor, HashMap<String, Sensor> sensorMap) {
         MainCorridor mainCorridor = new MainCorridor();
         ArrayList<Appliance> appliances = getAppliances(appliancesInMainCorridor);
         mainCorridor.setAppliances(appliances);
-        mainCorridor.setSensorId(AppUtils.getSensorUniqueId());
+
+        putInSensorMap(floorNumber, mainCorridorNumber, true, sensorMap, mainCorridor);
         return mainCorridor;
     }
 
-    private SubCorridor createSubCorridor(HashMap<AppConstants.APPLIANCES, Integer> appliancesInSubCorridor, HashMap<Integer, Sensor> sensorMap) {
+    private SubCorridor createSubCorridor(int floorNumber, int subCorridorNumber, HashMap<AppConstants.APPLIANCES, Integer> appliancesInSubCorridor, HashMap<String, Sensor> sensorMap) {
+
         SubCorridor subCorridor = new SubCorridor();
         ArrayList<Appliance> appliances = getAppliances(appliancesInSubCorridor);
         subCorridor.setAppliances(appliances);
+
+        putInSensorMap(floorNumber, subCorridorNumber, false, sensorMap, subCorridor);
+
         return subCorridor;
+    }
+
+    private void putInSensorMap(int floorNumber, int subCorridorNumber, boolean isMainCorridor, HashMap<String, Sensor> sensorMap, Corridor corridor) {
+        String sensorId = AppUtils.getSensorUniqueId(floorNumber, subCorridorNumber, isMainCorridor);
+        sensorMap.put(sensorId, new MotionSensor());
+        corridor.setSensorId(sensorId);
+
     }
 
     private ArrayList<Appliance> getAppliances(HashMap<AppConstants.APPLIANCES, Integer> appliancesInMainCorridor) {
@@ -104,7 +116,7 @@ public class HotelBuilderImpl implements HotelBuilder {
     @Override
     public void initHotelState(int numberOfFloors,
                                int numberOfMainCorridors, HashMap<AppConstants.APPLIANCES, Integer> appliancesInMainCorridor,
-                               int numberOfSubCorridors, HashMap<AppConstants.APPLIANCES, Integer> appliancesInSubCorridor, HashMap<Integer, Sensor> sensorMap) {
+                               int numberOfSubCorridors, HashMap<AppConstants.APPLIANCES, Integer> appliancesInSubCorridor, HashMap<String, Sensor> sensorMap) {
         setStructure(numberOfFloors,
                 numberOfMainCorridors, appliancesInMainCorridor,
                 numberOfSubCorridors, appliancesInSubCorridor, sensorMap);

@@ -9,6 +9,6 @@ public interface HotelBuilder {
 
     void initHotelState(int numberOfFloors,
                         int numberOfMainCorridors, HashMap<AppConstants.APPLIANCES, Integer> appliancesInMainCorridor,
-                        int numberOfSubCorridors, HashMap<AppConstants.APPLIANCES, Integer> appliancesInSubCorridor, HashMap<Integer, Sensor> sensorMap);
+                        int numberOfSubCorridors, HashMap<AppConstants.APPLIANCES, Integer> appliancesInSubCorridor, HashMap<String, Sensor> sensorMap);
 
 }

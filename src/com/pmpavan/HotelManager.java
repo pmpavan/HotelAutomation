@@ -8,7 +8,7 @@ import java.util.HashMap;
 
 public class HotelManager {
     private HotelBuilder hotelBuilderImpl;
-    private HashMap<Integer, Sensor> sensorMap = new HashMap<>();
+    private HashMap<String, Sensor> sensorMap = new HashMap<>();
 
     public HotelManager(int numberOfFloors,
                         int numberOfMainCorridors, HashMap<AppConstants.APPLIANCES, Integer> appliancesInMainCorridor,

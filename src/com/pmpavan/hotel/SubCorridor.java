@@ -41,10 +41,12 @@ public class SubCorridor implements Corridor {
         return sensorId;
     }
 
+    @Override
     public void setSensorId(String sensorId) {
         this.sensorId = sensorId;
     }
 
+    @Override
     public void setCorridorId(String corridorId) {
         this.corridorId = corridorId;
     }
