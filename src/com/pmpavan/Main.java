@@ -7,7 +7,7 @@ import static com.pmpavan.AppConstants.*;
 public class Main {
 
     private static int NUMBER_OF_FLOORS = 2;
-    private static int NUMBER_OF_MAINCORRIDORS = 1;
+    private static int NUMBER_OF_MAINCORRIDORS = 2;
     private static int NUMBER_OF_SUBCORRIDORS = 2;
 
     public static void main(String[] args) {
@@ -25,7 +25,7 @@ public class Main {
         System.out.println(manager.getCurrentHotelState());
 
 
-        manager.setSensorData(1, 0, true);
+        manager.setSensorData(1, 0, false);
         System.out.println("updated " + manager.getCurrentHotelState());
     }
 

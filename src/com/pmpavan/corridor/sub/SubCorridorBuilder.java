@@ -1,7 +1,6 @@
 package com.pmpavan.corridor.sub;
 
 import com.pmpavan.AppConstants;
-import com.pmpavan.corridor.sub.SubCorridor;
 import com.pmpavan.sensor.Sensor;
 import com.pmpavan.sensor.SensorListener;
 

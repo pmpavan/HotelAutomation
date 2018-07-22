@@ -27,6 +27,9 @@ public class SubCorridorBuilderImpl implements SubCorridorBuilder {
 
         CorridorHelper helper = new CorridorHelper();
 
+        subCorridor.setCorridorId(subCorridorNumber);
+
+
         ArrayList<Appliance> appliances = helper.getAppliances(appliancesInSubCorridor);
         subCorridor.setAppliances(appliances);
 

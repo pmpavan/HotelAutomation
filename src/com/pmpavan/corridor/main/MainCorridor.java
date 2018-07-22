@@ -8,6 +8,7 @@ import java.util.ArrayList;
 public class MainCorridor implements Corridor {
 
     private String sensorId;
+
     private int corridorId;
 
     private ArrayList<Appliance> appliances = new ArrayList<>();
@@ -18,13 +19,6 @@ public class MainCorridor implements Corridor {
 
     public void setAppliances(ArrayList<Appliance> appliances) {
         this.appliances = appliances;
-    }
-
-    @Override
-    public String toString() {
-        return "MainCorridor{" +
-                "appliances=" + appliances +
-                '}';
     }
 
     @Override
@@ -50,5 +44,14 @@ public class MainCorridor implements Corridor {
     @Override
     public void setCorridorId(int corridorId) {
         this.corridorId = corridorId;
+    }
+
+    @Override
+    public String toString() {
+        return "MainCorridor{" +
+                "sensorId='" + sensorId + '\'' +
+                ", corridorId=" + corridorId +
+                ", appliances=" + appliances +
+                '}';
     }
 }
