@@ -26,7 +26,7 @@ public class Hotel {
         builder.append("Hotel")
                 .append("\n");
         for (int i = 0; i < floors.size(); i++) {
-            builder.append("Floor ").append(i).append("\n").append(floors.get(i)).append("\n");
+            builder.append("Floor ").append(i + 1).append("\n").append(floors.get(i)).append("\n");
         }
         builder.append("------------------");
         builder.append("\n");

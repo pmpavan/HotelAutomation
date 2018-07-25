@@ -15,9 +15,8 @@ public class Main {
     public static void main(String[] args) {
 
         initHotel();
+
         setSensorData(1, 0, true);
-        System.out.println("power consumed ==> " + manager.getTotalPowerConsumed());
-//        initHotel();
         setSensorData(0, 0, false);
         setSensorData(0, 1, false);
     }
@@ -39,9 +38,8 @@ public class Main {
 
     private static void setSensorData(int floorNumber, int corridorNumber, boolean isMainCorridor) {
         manager.setSensorData(floorNumber, corridorNumber, isMainCorridor);
-        System.out.println("Updated Model " + manager.getCurrentHotelState());
+        System.out.println("Updated Model \n" + manager.getCurrentHotelState());
 
     }
-
 
 }

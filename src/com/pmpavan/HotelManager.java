@@ -6,7 +6,6 @@ import com.pmpavan.electricals.Appliance;
 import com.pmpavan.electricals.ApplianceManager;
 import com.pmpavan.electricals.ac.ACManager;
 import com.pmpavan.electricals.tubelight.TubeLightManager;
-import com.pmpavan.floor.Floor;
 import com.pmpavan.hotel.builder.HotelBuilder;
 import com.pmpavan.hotel.builder.HotelBuilderImpl;
 import com.pmpavan.sensor.Sensor;
@@ -136,6 +135,8 @@ public class HotelManager implements SensorListener {
                 applianceManager.switchOffAppliance(appliance);
             }
         }
+        if (callBack != null)
+            callBack.onStateChanged();
     }
 
     public double getTotalPowerConsumed() {
@@ -173,4 +174,19 @@ public class HotelManager implements SensorListener {
         Runtime.getRuntime()
                 .addShutdownHook(new Thread(scheduledExecutorService::shutdownNow));
     }
+
+
+    /**
+     * required for unit tests to now if the state of the hotel has changed or not
+     * @param callBack
+     */
+    public void setCallBack(HotelCallBack callBack) {
+        this.callBack = callBack;
+    }
+
+    public interface HotelCallBack {
+        void onStateChanged();
+    }
+
+    private HotelCallBack callBack;
 }

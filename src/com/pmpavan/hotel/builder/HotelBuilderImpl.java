@@ -7,7 +7,7 @@ import com.pmpavan.floor.Floor;
 import com.pmpavan.floor.FloorBuilder;
 import com.pmpavan.floor.FloorBuilderImpl;
 import com.pmpavan.floor.FloorManager;
-import com.pmpavan.hotel.*;
+import com.pmpavan.hotel.Hotel;
 import com.pmpavan.sensor.Sensor;
 import com.pmpavan.sensor.SensorListener;
 import javafx.util.Pair;

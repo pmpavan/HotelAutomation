@@ -1,0 +1,58 @@
+{
+  "number_of_floors": 2,
+  "number_of_maincorridors": 1,
+  "number_of_subcorridors": 2,
+  "test_cases": [
+    {
+      "sensor": {
+        "floor_number": 1,
+        "is_main_corridor": true,
+        "corridor_number": 0
+      },
+      "expected": [
+        {
+          "floor_number": 1,
+          "is_main_corridor": true,
+          "corridor_number": 0,
+          "applianceData": [
+            {
+              "ac": true,
+              "light": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sensor": {
+        "floor_number": 0,
+        "is_main_corridor": false,
+        "corridor_number": 1
+      },
+      "expected": [
+        {
+          "floor_number": 1,
+          "is_main_corridor": false,
+          "corridor_number": 0,
+          "applianceData": [
+            {
+              "ac": false,
+              "light": false
+            }
+          ]
+        },
+        {
+          "floor_number": 1,
+          "is_main_corridor": false,
+          "corridor_number": 1,
+          "applianceData": [
+            {
+              "ac": false,
+              "light": false
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
