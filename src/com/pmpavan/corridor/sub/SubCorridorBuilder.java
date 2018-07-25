@@ -9,4 +9,7 @@ import java.util.HashMap;
 public interface SubCorridorBuilder {
     SubCorridor createCorridor(int floorNumber, int subCorridorNumber, HashMap<AppConstants.APPLIANCES, Integer> appliancesInSubCorridor,
                                HashMap<String, Sensor> sensorMap, SensorListener listener);
+
+    double getPowerConsumed();
+
 }

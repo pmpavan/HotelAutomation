@@ -22,6 +22,10 @@ public class FloorBuilderImpl implements FloorBuilder {
         floor = new Floor();
     }
 
+    public FloorBuilderImpl(Floor floor) {
+        this.floor = floor;
+    }
+
     public Floor createFloor(int floorNumber, int numberOfMainCorridors, HashMap<AppConstants.APPLIANCES, Integer> appliancesInMainCorridor,
                              int numberOfSubCorridors, HashMap<AppConstants.APPLIANCES, Integer> appliancesInSubCorridor,
                              HashMap<String, Sensor> sensorMap, SensorListener listener) {
@@ -32,6 +36,21 @@ public class FloorBuilderImpl implements FloorBuilder {
         floor.setMainCorridors(mainCorridors);
         floor.setSubCorridors(subCorridors);
         return floor;
+    }
+
+    @Override
+    public Pair<Double, Double> getPowerConsumed() {
+        double mainCorridorTotal = 0;
+        double subCorridorTotal = 0;
+        for (MainCorridor mainCorridor : floor.getMainCorridors()) {
+            MainCorridorBuilder mainCorridorBuilder = new MainMainCorridorBuilderImpl(mainCorridor);
+            mainCorridorTotal += mainCorridorBuilder.getPowerConsumed();
+        }
+        for (SubCorridor subCorridor : floor.getSubCorridors()) {
+            SubCorridorBuilder subCorridorBuilder = new SubCorridorBuilderImpl(subCorridor);
+            subCorridorTotal += subCorridorBuilder.getPowerConsumed();
+        }
+        return new Pair<>(mainCorridorTotal, subCorridorTotal);
     }
 
     private Pair<ArrayList<MainCorridor>, ArrayList<SubCorridor>> createCorridors(

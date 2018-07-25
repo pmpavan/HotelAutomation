@@ -15,9 +15,11 @@ public class Main {
     public static void main(String[] args) {
 
         initHotel();
-        setSensorData(1, 0, false);
-        initHotel();
-        setSensorData(0, 0, true);
+        setSensorData(1, 0, true);
+        System.out.println("power consumed ==> " + manager.getTotalPowerConsumed());
+//        initHotel();
+        setSensorData(0, 0, false);
+        setSensorData(0, 1, false);
     }
 
     private static void initHotel() {
@@ -40,5 +42,6 @@ public class Main {
         System.out.println("Updated Model " + manager.getCurrentHotelState());
 
     }
+
 
 }

@@ -39,10 +39,14 @@ public class Floor {
 
     @Override
     public String toString() {
-        return "Floor{" +
-                "floorNumber=" + floorNumber +
-                ", mainCorridors=" + mainCorridors +
-                ", subCorridors=" + subCorridors +
-                '}';
+
+        StringBuilder builder = new StringBuilder();
+        for (int i = 0; i < mainCorridors.size(); i++) {
+            builder.append("Main Corridor").append(" ").append(i).append("\n").append(mainCorridors.get(i)).append("\n");
+        }
+        for (int i = 0; i < subCorridors.size(); i++) {
+            builder.append("Sub Corridor").append(" ").append(i).append("\n").append(subCorridors.get(i)).append("\n");
+        }
+        return builder.toString();
     }
 }

@@ -48,10 +48,11 @@ public class MainCorridor implements Corridor {
 
     @Override
     public String toString() {
-        return "MainCorridor{" +
-                "sensorId='" + sensorId + '\'' +
-                ", corridorId=" + corridorId +
-                ", appliances=" + appliances +
-                '}';
+        StringBuilder builder = new StringBuilder();
+        builder.append("Appliances ");
+        for (Appliance appliance : appliances) {
+            builder.append(appliance).append(" ");
+        }
+        return builder.toString();
     }
 }

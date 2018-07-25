@@ -19,8 +19,17 @@ public class Hotel {
 
     @Override
     public String toString() {
-        return "Hotel{" +
-                "floors=" + floors +
-                '}';
+        StringBuilder builder = new StringBuilder();
+        builder.append("\n");
+        builder.append("------------------");
+        builder.append("\n");
+        builder.append("Hotel")
+                .append("\n");
+        for (int i = 0; i < floors.size(); i++) {
+            builder.append("Floor ").append(i).append("\n").append(floors.get(i)).append("\n");
+        }
+        builder.append("------------------");
+        builder.append("\n");
+        return builder.toString();
     }
 }

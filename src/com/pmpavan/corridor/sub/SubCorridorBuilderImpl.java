@@ -19,6 +19,10 @@ public class SubCorridorBuilderImpl implements SubCorridorBuilder {
         subCorridor = new SubCorridor();
     }
 
+    public SubCorridorBuilderImpl(SubCorridor subCorridor) {
+        this.subCorridor = subCorridor;
+    }
+
     @Override
     public SubCorridor createCorridor(int floorNumber, int subCorridorNumber, HashMap<AppConstants.APPLIANCES, Integer> appliancesInSubCorridor,
                                       HashMap<String, Sensor> sensorMap, SensorListener listener) {
@@ -35,6 +39,16 @@ public class SubCorridorBuilderImpl implements SubCorridorBuilder {
         subCorridor.setSensorId(sensorId);
 
         return subCorridor;
+    }
+
+    @Override
+    public double getPowerConsumed() {
+        ArrayList<Appliance> appliances = subCorridor.getAppliances();
+        double total = 0;
+        for (Appliance appliance : appliances) {
+            total += appliance.getPowerConsumed();
+        }
+        return total;
     }
 
 }

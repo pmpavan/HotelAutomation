@@ -30,4 +30,10 @@ public class FloorManager {
     public ArrayList<SubCorridor> getSubCorridors(Floor floor) {
         return floor.getSubCorridors();
     }
+
+    public ArrayList<MainCorridor> getMainCorridors(Floor floor) {
+        return floor.getMainCorridors();
+    }
+
+
 }

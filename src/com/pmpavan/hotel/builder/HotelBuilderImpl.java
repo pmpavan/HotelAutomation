@@ -10,6 +10,7 @@ import com.pmpavan.floor.FloorManager;
 import com.pmpavan.hotel.*;
 import com.pmpavan.sensor.Sensor;
 import com.pmpavan.sensor.SensorListener;
+import javafx.util.Pair;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -82,7 +83,45 @@ public class HotelBuilderImpl implements HotelBuilder {
     }
 
     @Override
+    public ArrayList<MainCorridor> getMainCorridors(int floorNumber) {
+        FloorManager floorManager = new FloorManager();
+        Floor floor = getFloorAtPosition(floorNumber);
+        return floorManager.getMainCorridors(floor);
+    }
+
+    @Override
+    public ArrayList<Floor> getFloors() {
+        return hotel.getFloors();
+    }
+
+    @Override
     public String toString() {
         return hotel != null ? hotel.toString() : "";
     }
+
+
+    @Override
+    public double getPowerConsumed() {
+        double powerConsumedByMainCorridor = 0, powerConsumedBySubCorridor = 0;
+        for (Floor floor : hotel.getFloors()) {
+            FloorBuilder floorBuilder = new FloorBuilderImpl(floor);
+            Pair<Double, Double> pair = floorBuilder.getPowerConsumed();
+            powerConsumedByMainCorridor += pair.getKey();
+            powerConsumedBySubCorridor += pair.getValue();
+        }
+        return powerConsumedByMainCorridor + powerConsumedBySubCorridor;
+    }
+
+    @Override
+    public Pair<Double, Double> getMaxPowerConsumed() {
+        double powerConsumedByMainCorridor = 0, powerConsumedBySubCorridor = 0;
+        for (Floor floor : hotel.getFloors()) {
+            FloorBuilder floorBuilder = new FloorBuilderImpl(floor);
+            Pair<Double, Double> pair = floorBuilder.getPowerConsumed();
+            powerConsumedByMainCorridor += pair.getKey();
+            powerConsumedBySubCorridor += pair.getValue();
+        }
+        return new Pair<>((powerConsumedByMainCorridor * 15) , (powerConsumedBySubCorridor * 10));
+    }
+
 }
