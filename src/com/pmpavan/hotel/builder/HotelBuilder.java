@@ -32,6 +32,4 @@ public interface HotelBuilder {
 
     double getPowerConsumed();
 
-    Pair<Double, Double> getMaxPowerConsumed();
-
 }

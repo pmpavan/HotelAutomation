@@ -112,16 +112,4 @@ public class HotelBuilderImpl implements HotelBuilder {
         return powerConsumedByMainCorridor + powerConsumedBySubCorridor;
     }
 
-    @Override
-    public Pair<Double, Double> getMaxPowerConsumed() {
-        double powerConsumedByMainCorridor = 0, powerConsumedBySubCorridor = 0;
-        for (Floor floor : hotel.getFloors()) {
-            FloorBuilder floorBuilder = new FloorBuilderImpl(floor);
-            Pair<Double, Double> pair = floorBuilder.getPowerConsumed();
-            powerConsumedByMainCorridor += pair.getKey();
-            powerConsumedBySubCorridor += pair.getValue();
-        }
-        return new Pair<>((powerConsumedByMainCorridor * 15) , (powerConsumedBySubCorridor * 10));
-    }
-
 }
