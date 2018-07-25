@@ -155,7 +155,11 @@ public class HotelManager implements SensorListener {
                 .scheduleAtFixedRate(
                         () -> {
                             if (!isDetected) {
-                                handleAppliance(isMainCorridor, isDetected, appliance, false, false);
+                                if (appliance.getType() == AppConstants.APPLIANCES.AC) {
+                                    handleAppliance(isMainCorridor, isDetected, appliance, true, false);
+                                } else if (appliance.getType() == AppConstants.APPLIANCES.LIGHT) {
+                                    handleAppliance(isMainCorridor, isDetected, appliance, false, false);
+                                }
                             } else {
                                 //stop monitoring
                                 stopService(scheduledExecutorService);
